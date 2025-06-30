@@ -17,11 +17,11 @@ public class Radio {
 
     }
 
-    public Radio(int stationsCount, int VolumeCount) {
+    public Radio(int stationsCount, int volumeCount) {
         this.maxStation = stationsCount - 1;
         this.minStation = stationsCount + 1;
-        this.maxVolume = VolumeCount - 1;
-        this.minVolume = VolumeCount + 1;
+        this.maxVolume = volumeCount;
+        this.minVolume = volumeCount;
     }
 
 
@@ -49,6 +49,16 @@ public class Radio {
         }
     }
 
+    public void maxStation() {
+        if (currentStation != maxStation) {
+            currentStation++;
+            return;
+        } else {
+            currentStation = minStation;
+            return;
+        }
+    }
+
     public void prevStation() {
         if (currentStation != minStation) {
             currentStation--;
@@ -56,6 +66,62 @@ public class Radio {
 
         } else {
             currentStation = maxStation;
+            return;
+        }
+    }
+
+    public void minStation() {
+        if (currentStation != maxStation) {
+            currentStation = minStation;
+            return;
+
+        } else {
+            currentStation = minStation;
+            return;
+        }
+    }
+
+
+    public void nextVolume() {
+        if (currentVolume != maxVolume) {
+            currentVolume++;
+            return;
+        } else {
+            currentVolume = minVolume;
+            return;
+        }
+    }
+
+    public void prevVolume() {
+        if (currentVolume != minVolume) {
+            currentVolume--;
+            return;
+
+        } else {
+            currentVolume = maxVolume;
+            return;
+        }
+
+
+    }
+
+    public void maxVolume() {
+        if (currentVolume != maxVolume) {
+            currentVolume = maxVolume;
+            return;
+
+        } else {
+            currentVolume = minVolume;
+            return;
+        }
+    }
+
+    public void minVolume() {
+        if (currentVolume != maxVolume) {
+            currentVolume = minVolume;
+            return;
+        } else {
+            currentVolume = minVolume;
             return;
         }
     }
