@@ -2,12 +2,12 @@ package ru.netology.javaqa.Radio;
 
 public class Radio {
 
+    private final int minStation;
+    private final int maxVolume;
+    private final int minVolume;
     private int currentStation;
     private int currentVolume;
-    private int maxStation;
-    private int minStation;
-    private int maxVolume;
-    private int minVolume;
+    private final int maxStation;
 
     public Radio() {
         this.maxStation = 9;
@@ -20,10 +20,9 @@ public class Radio {
     public Radio(int stationsCount, int volumeCount) {
         this.maxStation = stationsCount - 1;
         this.minStation = stationsCount + 1;
-        this.maxVolume = volumeCount;
-        this.minVolume = volumeCount;
+        this.maxVolume = volumeCount - 1;
+        this.minVolume = volumeCount + 1;
     }
-
 
     public int getCurrentStation() {
         return currentStation;
@@ -42,88 +41,69 @@ public class Radio {
     public void nextStation() {
         if (currentStation != maxStation) {
             currentStation++;
-            return;
         } else {
             currentStation = minStation;
-            return;
         }
     }
 
     public void maxStation() {
         if (currentStation != maxStation) {
-            currentStation++;
-            return;
-        } else {
             currentStation = minStation;
-            return;
+        } else {
+            this.currentStation = this.minStation;
+        }
+    }
+
+    public void minStation() {
+        if (currentStation != minStation) {
+            currentStation = maxStation;
+        } else {
+            this.currentStation = this.maxStation;
         }
     }
 
     public void prevStation() {
         if (currentStation != minStation) {
             currentStation--;
-            return;
 
         } else {
             currentStation = maxStation;
-            return;
         }
     }
-
-    public void minStation() {
-        if (currentStation != maxStation) {
-            currentStation = minStation;
-            return;
-
-        } else {
-            currentStation = minStation;
-            return;
-        }
-    }
-
 
     public void nextVolume() {
-        if (currentVolume != maxVolume) {
+        if (currentVolume != minVolume) {
             currentVolume++;
-            return;
         } else {
-            currentVolume = minVolume;
-            return;
+            currentVolume = this.minVolume;
         }
     }
 
     public void prevVolume() {
         if (currentVolume != minVolume) {
             currentVolume--;
-            return;
 
         } else {
-            currentVolume = maxVolume;
-            return;
+            this.currentVolume = maxVolume;
         }
-
-
     }
 
     public void maxVolume() {
         if (currentVolume != maxVolume) {
             currentVolume = maxVolume;
             return;
-
-        } else {
-            currentVolume = minVolume;
-            return;
         }
+        this.currentVolume = maxVolume;
+
     }
 
     public void minVolume() {
         if (currentVolume != maxVolume) {
             currentVolume = minVolume;
             return;
-        } else {
-            currentVolume = minVolume;
-            return;
         }
+        this.currentVolume = minVolume;
+
     }
 
     public int getCurrentVolume() {
